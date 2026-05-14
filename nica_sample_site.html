@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nica | 門真市 古川橋 ヘア&スパサロン</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#f8f6f2;color:#2a2420;font-family:'Noto Sans JP',sans-serif;font-weight:300;padding-bottom:80px}
+
+.reserve-bar{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#2a2420;display:flex;gap:2px;padding:10px 12px;box-shadow:0 -4px 20px rgba(0,0,0,0.3)}
+.reserve-bar a{flex:1;padding:13px 4px;text-align:center;font-size:12px;font-weight:700;text-decoration:none;border-radius:4px;display:block}
+.btn-tel{background:#4a6a4a;color:white}
+.btn-line{background:#06c755;color:white}
+.btn-web{background:#8a7a5a;color:white}
+
+nav{position:sticky;top:0;z-index:100;background:white;border-bottom:1px solid #ede8e0;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-size:22px;font-weight:200;letter-spacing:8px;color:#2a2420;text-decoration:none;text-transform:lowercase}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{font-size:11px;color:#999;text-decoration:none;letter-spacing:1px}
+
+/* HERO - ナチュラル・グリーン・清潔感 */
+.hero{background:#2a3a28;padding:56px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'nica';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:180px;font-weight:200;color:rgba(255,255,255,.04);letter-spacing:16px;text-transform:lowercase;pointer-events:none;white-space:nowrap}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);font-size:10px;letter-spacing:4px;padding:5px 16px;margin-bottom:20px;font-family:'Josefin Sans',sans-serif}
+.hero h1{font-size:72px;font-weight:200;color:white;letter-spacing:16px;margin-bottom:8px;line-height:1;text-transform:lowercase}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-bottom:28px;display:block}
+.hero-catch{font-size:14px;color:rgba(255,255,255,.65);line-height:2.2;margin-bottom:32px;letter-spacing:.5px}
+.hero-points{display:flex;justify-content:center;gap:0;border:1px solid rgba(255,255,255,.1);max-width:360px;margin:0 auto 32px}
+.hero-point{flex:1;padding:14px 6px;border-right:1px solid rgba(255,255,255,.1);text-align:center}
+.hero-point:last-child{border-right:none}
+.point-val{font-size:16px;font-weight:300;color:rgba(255,255,255,.85);display:block;letter-spacing:1px}
+.point-label{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:1px;display:block;margin-top:4px}
+.hero-cta{display:flex;flex-direction:column;gap:12px;max-width:300px;margin:0 auto}
+.hero-cta a{display:block;padding:17px;text-align:center;font-size:14px;font-weight:700;text-decoration:none;border-radius:4px}
+.cta-primary{background:white;color:#2a3a28}
+.cta-secondary{border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.6)}
+
+.section{padding:48px 24px;max-width:640px;margin:0 auto}
+.sec-label{font-size:10px;letter-spacing:4px;color:#4a6a4a;display:block;margin-bottom:8px;text-transform:uppercase}
+.sec-heading{font-size:22px;font-weight:700;color:#2a2420;margin-bottom:28px}
+
+/* こだわり */
+.point-list{display:flex;flex-direction:column;gap:12px}
+.point-item{background:white;padding:20px;border-left:3px solid #4a6a4a}
+.point-item h3{font-size:14px;font-weight:700;color:#2a3a28;margin-bottom:6px}
+.point-item p{font-size:13px;color:#6a6050;line-height:2}
+
+/* MENU */
+.menu-bg{background:#2a2420;padding:48px 24px}
+.menu-inner{max-width:640px;margin:0 auto}
+.menu-bg .sec-label{color:rgba(255,255,255,.4)}
+.menu-bg .sec-heading{color:white}
+.menu-tabs{display:flex;gap:2px;margin-bottom:20px;overflow-x:auto}
+.menu-tab{flex-shrink:0;padding:10px 20px;font-size:12px;font-weight:700;background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);border:none;cursor:pointer;letter-spacing:1px;transition:all .3s}
+.menu-tab.active{background:#4a6a4a;color:white}
+.menu-content{display:none}
+.menu-content.active{display:block}
+.menu-list{display:flex;flex-direction:column;gap:2px}
+.menu-item{background:rgba(255,255,255,.04);padding:18px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.menu-name{font-size:14px;font-weight:700;color:white;display:block;margin-bottom:4px}
+.menu-desc{font-size:12px;color:rgba(255,255,255,.35);line-height:1.7}
+.menu-price{font-size:20px;font-weight:700;color:#8ab88a;white-space:nowrap;flex-shrink:0}
+.menu-time{font-size:10px;color:rgba(255,255,255,.2);display:block;margin-top:3px;text-align:right}
+.popular-tag{display:inline-block;background:#4a6a4a;color:white;font-size:9px;padding:2px 7px;margin-bottom:6px}
+
+/* 営業時間 */
+.hours-list{display:flex;flex-direction:column;gap:2px}
+.hours-item{background:white;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.hours-day{font-size:13px;font-weight:700;min-width:80px}
+.hours-time{font-size:13px;color:#555}
+.badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700}
+.badge-open{background:#e8f0e8;color:#4a6a4a}
+.badge-closed{background:#f5f5f5;color:#999}
+.hours-note{font-size:12px;color:#999;margin-top:12px;line-height:1.8}
+
+/* RESERVE */
+.reserve-bg{background:#4a6a4a;padding:48px 24px}
+.reserve-inner{max-width:640px;margin:0 auto}
+.reserve-bg .sec-label{color:rgba(255,255,255,.5)}
+.reserve-bg .sec-heading{color:white}
+.reserve-note{font-size:13px;color:rgba(255,255,255,.7);line-height:2;margin-bottom:20px}
+.reserve-list{display:flex;flex-direction:column;gap:10px}
+.reserve-item{background:rgba(255,255,255,.12);padding:18px 20px;display:flex;align-items:center;gap:16px;text-decoration:none;color:white}
+.r-icon{font-size:11px;letter-spacing:1px;background:rgba(255,255,255,.2);padding:6px 10px;flex-shrink:0;font-weight:700;font-family:'Josefin Sans',sans-serif}
+.r-label{font-size:11px;color:rgba(255,255,255,.5);display:block;margin-bottom:4px}
+.r-val{font-size:15px;font-weight:700}
+.r-arrow{margin-left:auto;font-size:20px;opacity:.5}
+
+.access-list{display:flex;flex-direction:column}
+.access-row{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #ede8e0}
+.access-row:last-child{border-bottom:none}
+.access-key{font-size:11px;letter-spacing:2px;color:#4a6a4a;width:72px;flex-shrink:0;padding-top:2px;text-transform:uppercase}
+.access-val{font-size:14px;color:#3a3028;line-height:1.8}
+.map-area{background:#e8ede8;height:180px;margin-top:20px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#999}
+
+footer{background:#2a2420;padding:28px 20px;text-align:center}
+.footer-logo{font-size:22px;font-weight:200;letter-spacing:8px;color:rgba(255,255,255,.25);display:block;margin-bottom:6px;text-transform:lowercase}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.15)}
+</style>
+</head>
+<body>
+
+<div class="reserve-bar">
+  <a href="tel:xxx-xxxx-xxxx" class="btn-tel">電話で予約</a>
+  <a href="#reserve" class="btn-line">LINEで予約</a>
+  <a href="#reserve" class="btn-web">ネット予約</a>
+</div>
+
+<nav>
+  <a href="#top" class="nav-logo">nica</a>
+  <ul class="nav-links">
+    <li><a href="#menu">料金</a></li>
+    <li><a href="#hours">営業時間</a></li>
+    <li><a href="#reserve">予約</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<section id="top" class="hero">
+  <div class="hero-badge">Hair & Spa — Kadoma</div>
+  <h1>nica</h1>
+  <span class="hero-sub">古川橋駅5分 / ヘア&スパサロン</span>
+  <p class="hero-catch">
+    「サロン帰りに誰かに会いたくなる。」<br>
+    今のあなたに必要なスタイルを、丁寧に。
+  </p>
+  <div class="hero-points">
+    <div class="hero-point"><span class="point-val">4席以下</span><span class="point-label">プライベート</span></div>
+    <div class="hero-point"><span class="point-val">駐車場</span><span class="point-label">あり</span></div>
+    <div class="hero-point"><span class="point-val">子連れ</span><span class="point-label">OK</span></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#reserve" class="cta-primary">今すぐ予約する</a>
+    <a href="#menu" class="cta-secondary">料金を見る</a>
+  </div>
+</section>
+
+<div class="section">
+  <span class="sec-label">About</span>
+  <div class="sec-heading">nicaのこだわり</div>
+  <div class="point-list">
+    <div class="point-item">
+      <h3>伸びても扱いやすいカット技術</h3>
+      <p>毎日のスタイリングが楽になるよう、自宅での再現性を考えた丁寧なカットが人気。朝のセットも楽になると好評です。</p>
+    </div>
+    <div class="point-item">
+      <h3>一人一人にあったヘッドスパ</h3>
+      <p>nicaイチオシのヘッドスパは、お客様の頭皮状態に合わせたオーダーメイドの薬剤を使用。疲れた頭皮をじっくりとケアします。</p>
+    </div>
+    <div class="point-item">
+      <h3>お子様連れも大歓迎</h3>
+      <p>キッズスペースあり・お子様同伴可。忙しいママも安心してご来店いただけます。朝9時台からの受付もOK。</p>
+    </div>
+  </div>
+</div>
+
+<div class="menu-bg" id="menu">
+  <div class="menu-inner">
+    <span class="sec-label">Menu & Price</span>
+    <div class="sec-heading">料金メニュー</div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="showTab(this,'cut')">カット</button>
+      <button class="menu-tab" onclick="showTab(this,'color')">カラー</button>
+      <button class="menu-tab" onclick="showTab(this,'spa')">ヘッドスパ</button>
+      <button class="menu-tab" onclick="showTab(this,'set')">セット</button>
+    </div>
+    <div class="menu-content active" id="tab-cut">
+      <div class="menu-list">
+        <div class="menu-item">
+          <div>
+            <span class="popular-tag">人気No.1</span>
+            <span class="menu-name">カット</span>
+            <span class="menu-desc">カウンセリングから仕上げまでマンツーマンで対応。再現性の高いスタイルへ。</span>
+          </div>
+          <div style="text-align:right;flex-shrink:0">
+            <div class="menu-price">受注後記載</div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-name">カット + シャンプー</span>
+            <span class="menu-desc">カットに合わせてリフレッシュできるシャンプーセット。</span>
+          </div>
+          <div style="text-align:right;flex-shrink:0"><div class="menu-price">受注後記載</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-content" id="tab-color">
+      <div class="menu-list">
+        <div class="menu-item">
+          <div><span class="menu-name">カラー</span><span class="menu-desc">透明感のあるカラーから白髪染めまで対応。髪へのダメージを抑えた施術。</span></div>
+          <div style="text-align:right;flex-shrink:0"><div class="menu-price">受注後記載</div></div>
+        </div>
+        <div class="menu-item">
+          <div><span class="menu-name">カット + カラー</span><span class="menu-desc">カットとカラーをまとめてケア。お得なセット料金でご提供。</span></div>
+          <div style="text-align:right;flex-shrink:0"><div class="menu-price">受注後記載</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-content" id="tab-spa">
+      <div class="menu-list">
+        <div class="menu-item">
+          <div>
+            <span class="popular-tag">nicaイチオシ</span>
+            <span class="menu-name">オーダーメイドヘッドスパ</span>
+            <span class="menu-desc">一人一人の頭皮状態に合わせた薬剤を使用。理想以上の仕上がりをご提供します。</span>
+          </div>
+          <div style="text-align:right;flex-shrink:0"><div class="menu-price">受注後記載</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-content" id="tab-set">
+      <div class="menu-list">
+        <div class="menu-item">
+          <div><span class="menu-name">ヘアセット</span><span class="menu-desc">結婚式・成人式・各種ご宴会のヘアセット承ります。</span></div>
+          <div style="text-align:right;flex-shrink:0"><div class="menu-price">受注後記載</div></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,.2);margin-top:14px">※詳細な料金は受注後に掲載いたします。</p>
+  </div>
+</div>
+
+<div class="section" id="hours">
+  <span class="sec-label">Hours</span>
+  <div class="sec-heading">営業時間</div>
+  <div class="hours-list">
+    <div class="hours-item"><span class="hours-day">火〜日</span><span class="hours-time">9:00頃〜（朝9時台から受付OK）</span><span class="badge badge-open">営業</span></div>
+    <div class="hours-item"><span class="hours-day">月曜日</span><span class="hours-time">—</span><span class="badge badge-closed">定休日</span></div>
+  </div>
+  <p class="hours-note">最新の営業時間はInstagram（@nica.hair_spa）にてご確認ください。</p>
+</div>
+
+<div class="reserve-bg" id="reserve">
+  <div class="reserve-inner">
+    <span class="sec-label">Reservation</span>
+    <div class="sec-heading">ご予約</div>
+    <p class="reserve-note">完全予約制です。当日のご予約もお気軽にどうぞ。</p>
+    <div class="reserve-list">
+      <a href="tel:xxx-xxxx-xxxx" class="reserve-item">
+        <span class="r-icon">TEL</span>
+        <div><span class="r-label">電話でご予約</span><span class="r-val">xxx-xxxx-xxxx</span></div>
+        <span class="r-arrow">›</span>
+      </a>
+      <a href="#" class="reserve-item">
+        <span class="r-icon">LINE</span>
+        <div><span class="r-label">LINEでご予約</span><span class="r-val">友だち追加して予約</span></div>
+        <span class="r-arrow">›</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="access">
+  <span class="sec-label">Access</span>
+  <div class="sec-heading">アクセス</div>
+  <div class="access-list">
+    <div class="access-row"><span class="access-key">Area</span><span class="access-val">大阪府門真市（古川橋駅より5分）</span></div>
+    <div class="access-row"><span class="access-key">Parking</span><span class="access-val">駐車場あり</span></div>
+    <div class="access-row"><span class="access-key">Style</span><span class="access-val">完全予約制 / 4席以下のプライベートサロン</span></div>
+    <div class="access-row"><span class="access-key">Map</span><span class="access-val">Googleマップは受注後に設定予定</span></div>
+  </div>
+  <div class="map-area">Googleマップ埋め込み予定</div>
+</div>
+
+<footer>
+  <span class="footer-logo">nica</span>
+  <div class="footer-copy">© 2026 nica Hair & Spa — Kadoma, Osaka</div>
+</footer>
+
+<script>
+function showTab(btn,id){
+  document.querySelectorAll('.menu-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
